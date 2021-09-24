@@ -3,7 +3,7 @@ FROM php:7.4.23-fpm-buster
 LABEL authors = "Roy To <roy.to@itdogsoftware.co>"
 
 # Install zip-dev
-RUN apt-get update && apt-get install -y libzip-dev zip
+RUN apt-get update && apt-get install -y libzip-dev zip libpng-dev
 
 # Install docker php extensions
 RUN docker-php-ext-install mysqli 
@@ -11,6 +11,8 @@ RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install sockets
 
 # set production config
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
