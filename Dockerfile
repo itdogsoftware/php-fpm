@@ -4,8 +4,9 @@ LABEL authors = "Roy To <roy.to@itdogsoftware.co>"
 # Add nodejs repo
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 # Install library & necessary service
-RUN apt-get update && apt-get install -y libzip-dev zip libpng-dev cron supervisor vim nodejs && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libzip-dev zip libpng-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
 # Install docker php extensions
+RUN pecl install redis && docker-php-ext-enable redis
 RUN docker-php-ext-install mysqli 
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
