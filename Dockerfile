@@ -2,7 +2,7 @@ FROM php:8.4.1-fpm-bullseye
 
 LABEL authors = "Roy To <roy.to@itdogsoftware.co>"
 # Add nodejs repo
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 # Install library & necessary service
 RUN apt-get update && apt-get install -y libzip-dev zip libpng-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
 # Install docker php extensions
