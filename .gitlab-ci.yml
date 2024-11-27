@@ -19,7 +19,7 @@ build-test:
   services:
     - docker:dind
   script:
-    - docker build --tag $DOCKER_IMAGE:${CI_COMMIT_SHORT_SHA} --tag $DOCKER_IMAGE:latest .
+    - docker build --tag ${DOCKER_IMAGE}:${CI_COMMIT_SHORT_SHA} --tag ${DOCKER_IMAGE}:latest .
   when: manual
 
 release:
