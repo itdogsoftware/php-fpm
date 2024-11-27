@@ -1,8 +1,8 @@
-FROM php:7.4.23-fpm-buster
+FROM php:8.4.1-fpm-bullseye
 
 LABEL authors = "Roy To <roy.to@itdogsoftware.co>"
 # Add nodejs repo
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
 # Install library & necessary service
 RUN apt-get update && apt-get install -y libzip-dev zip libpng-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
 # Install docker php extensions
