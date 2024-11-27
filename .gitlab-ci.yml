@@ -20,6 +20,7 @@ build-test:
     - docker:dind
   script:
      - echo ${CI_COMMIT_SHORT_SHA}
+   - docker build --tag itdogsoftware/php-fpm:${CI_COMMIT_SHORT_SHA} --tag itdogsoftware/php-fpm:latest .
 #    - docker build --tag ${DOCKER_IMAGE}:${CI_COMMIT_SHORT_SHA} --tag ${DOCKER_IMAGE}:latest .
   when: manual
 
