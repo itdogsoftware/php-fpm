@@ -52,7 +52,8 @@ jobs:
       - name: Fetch latest Git tag
         id: get_tag
         run: |
-          TAG=$(git describe --tags --abbrev=0)
+          git fetch --tags
+          TAG=$(git tag --sort=-creatordate | head -n 1)
           echo "LATEST_TAG=$TAG" >> $GITHUB_ENV
 
       - name: Build and push Docker image
