@@ -37,4 +37,4 @@ RUN sed -i '/^\[supervisord\]/a user=root' /etc/supervisor/supervisord.conf
 RUN rm -f /docker-entrypoint.sh && rm -rf /docker-entrypoint.d
 ENTRYPOINT ["/bin/sh", "-c"]
 # Run supervisor
-CMD ["/bin/sh",  "-c",  "supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf"]
+CMD ["supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf"]
