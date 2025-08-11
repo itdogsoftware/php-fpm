@@ -33,6 +33,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # copy php-fpm config to supervisor, which will be started by k8s when files are ready
 COPY php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
 # use root to avoid problems
-RUN sed -i '/^\[supervisord\]/a user=root' /etc/supervisor/supervisord.conf
+# RUN sed -i '/^\[supervisord\]/a user=root' /etc/supervisor/supervisord.conf
 # Run supervisor
 CMD ["/bin/sh", "-c", "supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf"]
