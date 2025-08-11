@@ -34,4 +34,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
 # use root to avoid problems
 RUN sed -i '/^\[supervisord\]/a user=root' /etc/supervisor/supervisord.conf
-EXPOSE 9000
+# Run supervisor
+CMD ["/bin/sh", "-c", "supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf"]
