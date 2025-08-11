@@ -34,9 +34,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
 # use root to avoid problems
 # RUN sed -i '/^\[supervisord\]/a user=root' /etc/supervisor/supervisord.conf
-RUN sed -i 's|file=/var/run/supervisor.sock|file=/tmp/supervisor.sock|' /etc/supervisor/supervisord.conf \
+ RUN sed -i 's|/var/log/supervisor/supervisord.log|/tmp/supervisord.log|' /etc/supervisor/supervisord.conf \
+ && sed -i 's|childlogdir=/var/log/supervisor|childlogdir=/tmp|' /etc/supervisor/supervisord.conf \
+ && sed -i 's|pidfile=/var/run/supervisord.pid|pidfile=/tmp/supervisord.pid|' /etc/supervisor/supervisord.conf \
+ && sed -i 's|file=/var/run/supervisor.sock|file=/tmp/supervisor.sock|' /etc/supervisor/supervisord.conf \
  && sed -i 's|serverurl=unix:///var/run/supervisor.sock|serverurl=unix:///tmp/supervisor.sock|' /etc/supervisor/supervisord.conf
-RUN sed -i 's|logfile=/var/log/supervisor/supervisord.log|logfile=/tmp/supervisord.log|' /etc/supervisor/supervisord.conf \
- && sed -i 's|childlogdir=/var/log/supervisor|childlogdir=/tmp|' /etc/supervisor/supervisord.conf
  # Run supervisor
 CMD ["/bin/sh", "-c", "supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf"]
