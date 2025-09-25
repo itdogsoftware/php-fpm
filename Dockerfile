@@ -1,4 +1,4 @@
-FROM php:8.3.14-fpm-bullseye
+FROM php:8.4.11-fpm-bullseye
 LABEL authors = "Roy To <roy.to@itdogsoftware.co>"
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
