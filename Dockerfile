@@ -18,10 +18,11 @@ RUN docker-php-ext-install pcntl
 # set production config
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 # check opcache is enable and it's related ini
+RUN ls /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini || true
+RUN echo "opcache.enable=1\nopcache.enable_cli=1\nopcache.memory_consumption=128" > /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 RUN echo "--- PHP 8.5 Opcache status ---" && \
     php -v && \
-    php -m | grep -i opcache && \
-    echo "Opcache config path: " && ls -lh $(php-config --extension-dir)/opcache.so && \
+    php -i | grep "opcache.enable =" && \
     echo "--------------------------------"
 # Update php config
 RUN sed -i "/memory_limit\s=\s/s/=.*/= 512M/" /usr/local/etc/php/php.ini
