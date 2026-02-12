@@ -19,7 +19,7 @@ RUN docker-php-ext-install pcntl
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 # check opcache is enable and it's related ini
 RUN ls /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini || true
-RUN echo "opcache.enable=1\nopcache.enable_cli=1\nopcache.memory_consumption=128" > /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+# RUN echo "opcache.enable=1\nopcache.enable_cli=1\nopcache.memory_consumption=128" > /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 RUN echo "--- PHP 8.5 Opcache status ---" && \
     php -v && \
     php -i | grep "opcache.enable =" && \
