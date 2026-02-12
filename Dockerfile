@@ -1,5 +1,5 @@
 FROM php:8.5-fpm-bookworm
-LABEL authors = "Roy To <roy.to@itdogsoftware.co>"
+LABEL authors="Roy To <roy.to@itdogsoftware.co>"
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 RUN bash -c "source ~/.bashrc && nvm install 18"
@@ -17,13 +17,6 @@ RUN docker-php-ext-install sockets
 RUN docker-php-ext-install pcntl
 # set production config
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
-# check opcache is enable and it's related ini
-RUN ls /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini || true
-# RUN echo "opcache.enable=1\nopcache.enable_cli=1\nopcache.memory_consumption=128" > /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
-RUN echo "--- PHP 8.5 Opcache status ---" && \
-    php -v && \
-    php -i | grep "opcache.enable =" && \
-    echo "--------------------------------"
 # Update php config
 RUN sed -i "/memory_limit\s=\s/s/=.*/= 512M/" /usr/local/etc/php/php.ini
 # change php-fpm use socket in /socket/php-fpm.sock
