@@ -1,4 +1,4 @@
-FROM php:8.5-rc-fpm-trixie
+FROM php:8.5.12-fpm-trixie
 LABEL authors="Roy To <roy.to@itdogsoftware.co>"
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
