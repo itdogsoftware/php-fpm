@@ -7,7 +7,9 @@ RUN bash -c "source ~/.bashrc && nvm install 18"
 RUN apt-get update && apt-get install -y libzip-dev zip libfreetype6-dev libjpeg62-turbo-dev libpng-dev libgmp-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
 
 # Install docker php extensions
-RUN pear update-channels && pecl update-channels && pecl install redis && docker-php-ext-enable redis
+RUN curl -sS https://github.com/php/pie/releases/latest/download/pie.phar -o /usr/local/bin/pie \
+    && chmod +x /usr/local/bin/pie \
+    && pie install redis:6.3.0
 RUN docker-php-ext-install mysqli 
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
