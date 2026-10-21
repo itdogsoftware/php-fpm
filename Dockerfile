@@ -5,7 +5,6 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
 RUN bash -c "source ~/.bashrc && nvm install 18"
 # Install library & necessary service
 RUN apt-get update && apt-get install -y libzip-dev zip libfreetype6-dev libjpeg62-turbo-dev libpng-dev libgmp-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
-
 # Install docker php extensions
 RUN curl -sS https://github.com/php/pie/releases/latest/download/pie.phar -o /usr/local/bin/pie \
     && chmod +x /usr/local/bin/pie \
