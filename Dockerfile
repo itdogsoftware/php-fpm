@@ -2,7 +2,7 @@ FROM php:8.5.12-fpm-trixie
 LABEL authors="Roy To <roy.to@itdogsoftware.co>"
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-RUN bash -c "source ~/.bashrc && nvm install 18"
+RUN bash -c "source ~/.bashrc && nvm install 22"
 # Install library & necessary service
 RUN apt-get update && apt-get install -y libzip-dev zip libfreetype6-dev libjpeg62-turbo-dev libpng-dev libgmp-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
 # Install docker php extensions
