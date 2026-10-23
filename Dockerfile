@@ -1,13 +1,14 @@
-FROM php:8.5-rc-fpm-trixie
+FROM php:8.5.12-fpm-trixie
 LABEL authors="Roy To <roy.to@itdogsoftware.co>"
 # Install NVM
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-RUN bash -c "source ~/.bashrc && nvm install 18"
+RUN bash -c "source ~/.bashrc && nvm install 22"
 # Install library & necessary service
 RUN apt-get update && apt-get install -y libzip-dev zip libfreetype6-dev libjpeg62-turbo-dev libpng-dev libgmp-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
-
 # Install docker php extensions
-RUN pecl install redis && docker-php-ext-enable redis
+RUN curl -sS https://github.com/php/pie/releases/latest/download/pie.phar -o /usr/local/bin/pie \
+    && chmod +x /usr/local/bin/pie \
+    && pie install redis:6.3.0
 RUN docker-php-ext-install mysqli 
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
