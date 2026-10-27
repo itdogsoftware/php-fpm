@@ -2,6 +2,7 @@ FROM php:8.5.12-fpm-trixie
 LABEL authors="Roy To <roy.to@itdogsoftware.co>"
 # Install NVM
 ENV NVM_DIR="/home/node/.nvm"
+RUN mkdir -p "$NVM_DIR"
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 RUN bash -c "source ~/.bashrc && nvm install 22"
 ENV PATH="${NVM_DIR}/versions/node/v22.*/bin:${PATH}"
