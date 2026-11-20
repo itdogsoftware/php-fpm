@@ -1,4 +1,4 @@
-FROM php:8.5.12-fpm-trixie
+FROM php:8.5.13-fpm-trixie
 LABEL authors="Roy To <roy.to@itdogsoftware.co>"
 # Install library & necessary service
 RUN apt-get update && apt-get install -y libzip-dev zip libfreetype6-dev libjpeg62-turbo-dev libpng-dev libgmp-dev cron supervisor vim nodejs gettext-base && rm -rf /var/lib/apt/lists/*
